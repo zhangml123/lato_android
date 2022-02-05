@@ -1,0 +1,111 @@
+apply plugin: 'com.android.library'
+apply plugin: 'realm-android'
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.0"
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        //minSdkVersion 16
+       // targetSdkVersion 29
+       // versionCode 1
+        //versionName "1.0"
+        //multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+        buildConfigField("int", "INNER_VERSION_NAME", "${inner_version_name}")
+        buildConfigField("String", "RELEASE_TYPE", "${releaseTypeT}")
+        buildConfigField("String", "URL_PLATON_NETWORK", "${URL_PLATON_NETWORK}")
+        buildConfigField("String", "URL_TEST_NET", "${URL_TEST_NET}")
+        buildConfigField("String", "URL_TEST_MAIN_SERVER", "${URL_TEST_MAIN_SERVER}")
+        buildConfigField("String", "URL_TEST_SERVER", "${URL_TEST_SERVER}")
+        buildConfigField("String", "URL_TEST_OUTER_SERVER", "${URL_TEST_OUTER_SERVER}")
+        buildConfigField("String", "URL_DEVELOP_SERVER", "${URL_DEVELOP_SERVER}")
+        buildConfigField("String", "URL_ALAYA_RPC", "${URL_ALAYA_RPC}")
+        buildConfigField("String", "URL_ALAYA_SERVER", "${URL_ALAYA_SERVER}")
+
+        buildConfigField("String", "ID_PLATON_TESTNET_CHAIN", "${ID_PLATON_TESTNET_CHAIN}")
+        buildConfigField("String", "URL_PLATON_TESTNET_SERVER", "${URL_PLATON_TESTNET_SERVER}")
+        buildConfigField("String", "URL_PLATON_TESTNET_RPC", "${URL_PLATON_TESTNET_RPC}")
+
+        buildConfigField("String", "ID_PLATON_CHAIN", "${ID_PLATON_CHAIN}")
+        buildConfigField("String", "URL_PLATON_SERVER", "${URL_PLATON_SERVER}")
+        buildConfigField("String", "URL_PLATON_RPC", "${URL_PLATON_RPC}")
+
+        buildConfigField("String", "ID_TEST_MAIN_CHAIN", "${ID_TEST_MAIN_CHAIN}")
+        buildConfigField("String", "ID_TEST_NET", "${ID_TEST_NET}")
+        buildConfigField("String", "ID_TEST_CHAIN", "${ID_TEST_CHAIN}")
+        buildConfigField("String", "ID_DEVELOP_CHAIN", "${ID_DEVELOP_CHAIN}")
+        buildConfigField("String", "ID_ALAYA_CHAIN", "${ID_ALAYA_CHAIN}")
+        buildConfigField("int", "QRCODE_VERSION_CODE", "${qrcode_version_code}")
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+    buildTypes {
+        debug {
+            minifyEnabled true
+        }
+        release {
+            minifyEnabled true
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    /* productFlavors {
+         play {
+         }
+         website {
+         }
+     }*/
+}
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        mavenLocal()
+        maven { url "https://sdk.platon.network/nexus/content/groups/public/" }
+    }
+
+}
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    /*api ("com.alaya.client:alaya-core:0.13.2.1") {
+        exclude group: 'com.alaya.client', module: 'alaya-utils'
+    }*/
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'junit:junit:4.12'
+    api 'androidx.test.ext:junit:1.1.1'
+    api 'androidx.test.espresso:espresso-core:3.2.0'
+    api 'io.reactivex.rxjava2:rxjava:2.2.3'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api "com.trello.rxlifecycle2:rxlifecycle:2.2.1"
+    api "com.trello.rxlifecycle2:rxlifecycle-components:2.2.1"
+    api "com.trello.rxlifecycle2:rxlifecycle-android:2.2.1"
+    api ('org.bitcoinj:bitcoinj-core:0.14.7'){
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+        exclude group: 'com.google.guava', module: 'guava'
+    }
+    api 'io.realm:realm-android-library:6.0.1'
+    api "com.squareup.retrofit2:retrofit:2.4.0"
+    api "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
+    api "com.squareup.retrofit2:converter-scalars:2.4.0"
+    api "com.squareup.retrofit2:converter-gson:2.4.0"
+    api "com.facebook.stetho:stetho:1.5.0"
+    api "com.facebook.stetho:stetho-okhttp3:1.5.0"
+    api "com.squareup.okhttp3:okhttp:3.11.0"
+    api "com.squareup.okhttp3:logging-interceptor:3.11.0"
+    api 'org.greenrobot:eventbus:3.0.0'
+    api 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    api 'com.alibaba:fastjson:1.2.73'
+    api 'com.google.zxing:core:3.3.3'
+    api 'com.fasterxml.jackson.core:jackson-databind:2.9.9.2'
+    api 'androidx.multidex:multidex:2.0.1'
+    /////
+    api 'io.reactivex:rxjava:1.2.4'
+    api 'org.bouncycastle:bcprov-jdk15on:1.61'
+}
